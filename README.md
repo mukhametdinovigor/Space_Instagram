@@ -3,7 +3,7 @@
 These are three scripts:
 - `fetch_spacex.py` download images from [SpaceX api](https://api.spacexdata.com/v3/launches)
 - `fetch_hubble.py` download images from [Hubble api](http://hubblesite.org/api/v3/images?page=all)
-- `upload_instagram.py` prepare downloaded images and upload they to instagram
+- `upload_instagram.py` prepare downloaded images and upload them to instagram
 
 ### How to install
 
