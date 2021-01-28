@@ -27,7 +27,7 @@ def get_images_id(collect_name):
     return images_id
 
 
-def fetch_hubble_image_id(image_url, collection_name):
+def fetch_hubble_images(image_url, collection_name):
     for image_id in get_images_id(collection_name):
         user_url = get_best_image_url(image_url, image_id)
         filename = get_best_image_name(image_url, image_id)
@@ -42,7 +42,7 @@ def main():
     collection = 'printshop'
     hubble_url = 'http://hubblesite.org/api/v3/image/'
     os.makedirs('images', exist_ok=True)
-    fetch_hubble_image_id(hubble_url, collection)
+    fetch_hubble_images(hubble_url, collection)
 
 
 if __name__ == '__main__':
