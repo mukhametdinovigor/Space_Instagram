@@ -41,8 +41,7 @@ def fetch_hubble_image_id(image_url, collection_name):
 def main():
     collection = 'printshop'
     hubble_url = 'http://hubblesite.org/api/v3/image/'
-    if not os.path.exists('images'):
-        os.makedirs('images')
+    os.makedirs('images', exist_ok=True)
     fetch_hubble_image_id(hubble_url, collection)
 
 

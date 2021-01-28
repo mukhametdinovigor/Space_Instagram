@@ -26,8 +26,7 @@ def upload_instagram():
 
 
 def main():
-    if not os.path.exists('images_for_instagram'):
-        os.makedirs('images_for_instagram')
+    os.makedirs('images_for_instagram', exist_ok=False)
     thumbnail_pic()
     upload_instagram()
 

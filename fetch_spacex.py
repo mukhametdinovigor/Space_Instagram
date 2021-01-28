@@ -21,8 +21,7 @@ def fetch_spacex_last_launch(images_url):
 
 def main():
     spacex_url = 'https://api.spacexdata.com/v3/launches/67'
-    if not os.path.exists('images'):
-        os.makedirs('images')
+    os.makedirs('images', exist_ok=True)
     fetch_spacex_last_launch(spacex_url)
 
 
