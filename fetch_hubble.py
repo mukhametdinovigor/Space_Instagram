@@ -18,13 +18,13 @@ def get_best_image_name(url, image_id):
 
 
 def get_images_ids(collect_name):
-    images_id = set()
+    image_ids = set()
     payload = {'page': 'all', 'collection_name': collect_name}
     response = requests.get('http://hubblesite.org/api/v3/images', params=payload)
     response.raise_for_status()
     for attribute in response.json():
-        images_id.add(attribute['id'])
-    return images_id
+        image_ids.add(attribute['id'])
+    return image_ids
 
 
 def fetch_hubble_images(image_url, collection_name):
