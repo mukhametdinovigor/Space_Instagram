@@ -23,6 +23,13 @@ Then use `pip` (or `pip3`, if there is a conflict with Python2) to install depen
 pip install -r requirements.txt
 ```
 
+Run script in command line:
+```
+python3 fetch_spacex.py
+python3 fetch_hubble.py
+python3 upload_instagram.py
+```
+
 ### Project Goals
 
 The code is written for educational purposes on online-course for web-developers [dvmn.org](https://dvmn.org/).
