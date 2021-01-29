@@ -9,13 +9,6 @@ def get_best_image_url(url, image_id):
     return f"http:{hubble_response.json()['image_files'][-1].get('file_url')}"
 
 
-def get_best_image_name(url, image_id, folder):
-    best_image_extension = os.path.splitext(get_best_image_url(url, image_id))[1]
-    file_path = os.path.join(os.getcwd(), folder, str(image_id))
-    best_image_name = f'{file_path}{best_image_extension}'
-    return best_image_name
-
-
 def get_images_ids(collection_name):
     image_ids = set()
     payload = {'page': 'all', 'collection_name': collection_name}
@@ -29,7 +22,7 @@ def get_images_ids(collection_name):
 def fetch_hubble_images(image_url, collection_name, folder):
     for image_id in get_images_ids(collection_name):
         user_url = get_best_image_url(image_url, image_id)
-        filename = get_best_image_name(image_url, image_id, folder)
+        filename = os.path.join(os.getcwd(), folder, f'{str(image_id)}{os.path.splitext(user_url)[-1]}')
         image_download(user_url, filename)
         print(f'File {image_id} downloaded')
 
