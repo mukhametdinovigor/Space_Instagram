@@ -13,7 +13,8 @@ def get_best_image_url(url, image_id):
 
 def get_best_image_name(url, image_id):
     best_image_extension = f".{get_best_image_url(url, image_id).split('.')[-1]}"
-    best_image_name = f'images\\{image_id}{best_image_extension}'
+    file_path = os.path.join(os.getcwd(), 'images', str(image_id))
+    best_image_name = f'{file_path}{best_image_extension}'
     return best_image_name
 
 

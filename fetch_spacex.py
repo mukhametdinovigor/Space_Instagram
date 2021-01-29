@@ -10,7 +10,7 @@ def image_download(image_url, filename):
 
 
 def fetch_spacex_last_launch(images_url):
-    file_path = 'images\\spacex'
+    file_path = os.path.join(os.getcwd(), 'images', 'spacex')
     file_extension = '.jpg'
     spacex_response = requests.get(images_url)
     spacex_response.raise_for_status()
