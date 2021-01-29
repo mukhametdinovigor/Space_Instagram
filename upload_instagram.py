@@ -4,7 +4,7 @@ from PIL import Image
 import dotenv
 
 
-def thumbnail_pic(end_folder):
+def thumbnail_pictures(end_folder):
     start_folder = 'images'
     images = os.listdir(start_folder)
     for image in images:
@@ -30,7 +30,7 @@ def main():
     INSTAGRAM_PASSWORD = os.getenv('INSTAGRAM_PASSWORD')
     upload_folder = 'images_for_instagram'
     os.makedirs(upload_folder, exist_ok=True)
-    thumbnail_pic(upload_folder)
+    thumbnail_pictures(upload_folder)
     upload_images_to_instagram(upload_folder, INSTAGRAM_LOGIN, INSTAGRAM_PASSWORD)
 
 
