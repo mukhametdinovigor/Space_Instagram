@@ -23,7 +23,7 @@ Then use `pip` (or `pip3`, if there is a conflict with Python2) to install depen
 pip install -r requirements.txt
 ```
 
-Run script in command line:
+Run scripts in command line:
 ```
 python3 fetch_spacex.py
 python3 fetch_hubble.py
