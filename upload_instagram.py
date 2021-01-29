@@ -3,10 +3,6 @@ from instabot import Bot
 from PIL import Image
 import dotenv
 
-dotenv.load_dotenv()
-INSTAGRAM_LOGIN = os.getenv('INSTAGRAM_LOGIN')
-INSTAGRAM_PASSWORD = os.getenv('INSTAGRAM_PASSWORD')
-
 
 def thumbnail_pic(end_folder):
     start_folder = 'images'
@@ -29,6 +25,9 @@ def upload_instagram(end_folder):
 
 
 def main():
+    dotenv.load_dotenv()
+    INSTAGRAM_LOGIN = os.getenv('INSTAGRAM_LOGIN')
+    INSTAGRAM_PASSWORD = os.getenv('INSTAGRAM_PASSWORD')
     upload_folder = 'images_for_instagram'
     os.makedirs(upload_folder, exist_ok=True)
     thumbnail_pic(upload_folder)
