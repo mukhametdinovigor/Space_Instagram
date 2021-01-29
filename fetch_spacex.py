@@ -9,8 +9,8 @@ def fetch_spacex_launch(images_url, folder):
     spacex_response = requests.get(images_url)
     spacex_response.raise_for_status()
     images_links = spacex_response.json()['links']['flickr_images']
-    for image_number, image_link in enumerate(images_links):
-        image_download(image_link, f'{file_path}{image_number + 1}{file_extension}')
+    for image_number, image_link in enumerate(images_links, start=1):
+        image_download(image_link, f'{file_path}{image_number}{file_extension}')
 
 
 def main():
