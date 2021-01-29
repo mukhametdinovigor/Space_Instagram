@@ -3,12 +3,9 @@ import os
 
 
 def get_best_image_url(url, image_id):
-    hubble_image_urls = []
     hubble_response = requests.get(f'{url}{image_id}')
     hubble_response.raise_for_status()
-    for image_attributes in hubble_response.json()['image_files']:
-        hubble_image_urls.append(f"http:{image_attributes['file_url']}")
-    return hubble_image_urls[-1]
+    return f"http:{hubble_response.json()['image_files'][-1].get('file_url')}"
 
 
 def get_best_image_name(url, image_id, folder):
