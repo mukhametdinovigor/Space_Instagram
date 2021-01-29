@@ -1,6 +1,6 @@
 import requests
 import os
-from utils import image_download
+from utils import download_image
 
 
 def fetch_spacex_launch(images_url, folder):
@@ -10,7 +10,7 @@ def fetch_spacex_launch(images_url, folder):
     spacex_response.raise_for_status()
     images_links = spacex_response.json()['links']['flickr_images']
     for image_number, image_link in enumerate(images_links, start=1):
-        image_download(image_link, f'{file_path}{image_number}{file_extension}')
+        download_image(image_link, f'{file_path}{image_number}{file_extension}')
 
 
 def main():
