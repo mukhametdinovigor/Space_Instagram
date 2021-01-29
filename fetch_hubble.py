@@ -15,9 +15,9 @@ def get_best_image_name(url, image_id, folder):
     return best_image_name
 
 
-def get_images_ids(collect_name):
+def get_images_ids(collection_name):
     image_ids = set()
-    payload = {'page': 'all', 'collection_name': collect_name}
+    payload = {'page': 'all', 'collection_name': collection_name}
     response = requests.get('http://hubblesite.org/api/v3/images', params=payload)
     response.raise_for_status()
     for attribute in response.json():
