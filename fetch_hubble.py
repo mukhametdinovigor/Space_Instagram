@@ -1,5 +1,6 @@
 import requests
 import os
+from utils import image_download
 
 
 def get_best_image_url(url, image_id):
@@ -29,10 +30,7 @@ def fetch_hubble_images(image_url, collection_name, folder):
     for image_id in get_images_ids(collection_name):
         user_url = get_best_image_url(image_url, image_id)
         filename = get_best_image_name(image_url, image_id, folder)
-        response = requests.get(user_url, verify=False)
-        response.raise_for_status()
-        with open(filename, 'wb') as file:
-            file.write(response.content)
+        image_download(user_url, filename)
         print(f'File {image_id} downloaded')
 
 

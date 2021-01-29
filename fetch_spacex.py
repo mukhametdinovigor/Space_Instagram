@@ -1,12 +1,6 @@
 import requests
 import os
-
-
-def image_download(image_url, filename):
-    response = requests.get(image_url)
-    response.raise_for_status()
-    with open(filename, 'wb') as file:
-        file.write(response.content)
+from utils import image_download
 
 
 def fetch_spacex_launch(images_url, folder):
