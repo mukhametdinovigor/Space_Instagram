@@ -12,7 +12,7 @@ def get_best_image_url(url, image_id):
 
 
 def get_best_image_name(url, image_id, folder):
-    best_image_extension = f".{get_best_image_url(url, image_id).split('.')[-1]}"
+    best_image_extension = os.path.splitext(get_best_image_url(url, image_id))[1]
     file_path = os.path.join(os.getcwd(), folder, str(image_id))
     best_image_name = f'{file_path}{best_image_extension}'
     return best_image_name
