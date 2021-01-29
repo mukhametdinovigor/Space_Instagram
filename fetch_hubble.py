@@ -11,9 +11,9 @@ def get_best_image_url(url, image_id):
     return hubble_image_urls[-1]
 
 
-def get_best_image_name(url, image_id):
+def get_best_image_name(url, image_id, folder):
     best_image_extension = f".{get_best_image_url(url, image_id).split('.')[-1]}"
-    file_path = os.path.join(os.getcwd(), 'images', str(image_id))
+    file_path = os.path.join(os.getcwd(), folder, str(image_id))
     best_image_name = f'{file_path}{best_image_extension}'
     return best_image_name
 
@@ -28,10 +28,10 @@ def get_images_ids(collect_name):
     return image_ids
 
 
-def fetch_hubble_images(image_url, collection_name):
+def fetch_hubble_images(image_url, collection_name, folder):
     for image_id in get_images_ids(collection_name):
         user_url = get_best_image_url(image_url, image_id)
-        filename = get_best_image_name(image_url, image_id)
+        filename = get_best_image_name(image_url, image_id, folder)
         response = requests.get(user_url, verify=False)
         response.raise_for_status()
         with open(filename, 'wb') as file:
@@ -40,10 +40,11 @@ def fetch_hubble_images(image_url, collection_name):
 
 
 def main():
+    folder = 'images'
     collection = 'printshop'
     hubble_url = 'http://hubblesite.org/api/v3/image/'
-    os.makedirs('images', exist_ok=True)
-    fetch_hubble_images(hubble_url, collection)
+    os.makedirs(folder, exist_ok=True)
+    fetch_hubble_images(hubble_url, collection, folder)
 
 
 if __name__ == '__main__':

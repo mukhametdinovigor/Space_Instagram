@@ -8,29 +8,31 @@ INSTAGRAM_LOGIN = os.getenv('INSTAGRAM_LOGIN')
 INSTAGRAM_PASSWORD = os.getenv('INSTAGRAM_PASSWORD')
 
 
-def thumbnail_pic():
-    images = os.listdir('images')
+def thumbnail_pic(upload_folder):
+    download_folder = 'images'
+    images = os.listdir(download_folder)
     for image in images:
-        start_file_path = os.path.join(os.getcwd(), 'images')
+        start_file_path = os.path.join(os.getcwd(), download_folder)
         photo = Image.open(os.path.join(start_file_path, image))
         photo.thumbnail((1080, 1080))
         rgb_photo = photo.convert('RGB')
-        end_file_path = os.path.join(os.getcwd(), "images_for_instagram", image)
+        end_file_path = os.path.join(os.getcwd(), upload_folder, image)
         rgb_photo.save(f'{end_file_path}', format='JPEG')
 
 
-def upload_instagram():
+def upload_instagram(upload_folder):
     bot = Bot()
     bot.login(username=INSTAGRAM_LOGIN, password=INSTAGRAM_PASSWORD)
-    images_for_instagram = os.listdir('images_for_instagram')
+    images_for_instagram = os.listdir(upload_folder)
     for pic in images_for_instagram:
-        bot.upload_photo(os.path.join(os.getcwd(), 'images_for_instagram', pic))
+        bot.upload_photo(os.path.join(os.getcwd(), upload_folder, pic))
 
 
 def main():
-    os.makedirs('images_for_instagram', exist_ok=True)
-    thumbnail_pic()
-    upload_instagram()
+    upload_folder = 'images_for_instagram'
+    os.makedirs(upload_folder, exist_ok=True)
+    thumbnail_pic(upload_folder)
+    upload_instagram(upload_folder)
 
 
 if __name__ == '__main__':

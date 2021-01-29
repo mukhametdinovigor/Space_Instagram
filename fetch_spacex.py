@@ -9,8 +9,8 @@ def image_download(image_url, filename):
         file.write(response.content)
 
 
-def fetch_spacex_last_launch(images_url):
-    file_path = os.path.join(os.getcwd(), 'images', 'spacex')
+def fetch_spacex_launch(images_url, folder):
+    file_path = os.path.join(os.getcwd(), folder, 'spacex')
     file_extension = '.jpg'
     spacex_response = requests.get(images_url)
     spacex_response.raise_for_status()
@@ -20,9 +20,10 @@ def fetch_spacex_last_launch(images_url):
 
 
 def main():
+    folder = 'images'
     spacex_url = 'https://api.spacexdata.com/v3/launches/67'
-    os.makedirs('images', exist_ok=True)
-    fetch_spacex_last_launch(spacex_url)
+    os.makedirs(folder, exist_ok=True)
+    fetch_spacex_launch(spacex_url, folder)
 
 
 if __name__ == '__main__':
