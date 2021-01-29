@@ -16,9 +16,9 @@ def thumbnail_pic(end_folder):
         rgb_photo.save(f'{end_file_path}', format='JPEG')
 
 
-def upload_instagram(end_folder):
+def upload_instagram(end_folder, login, password):
     bot = Bot()
-    bot.login(username=INSTAGRAM_LOGIN, password=INSTAGRAM_PASSWORD)
+    bot.login(username=login, password=password)
     images_for_instagram = os.listdir(end_folder)
     for pic in images_for_instagram:
         bot.upload_photo(os.path.join(os.getcwd(), end_folder, pic))
@@ -31,7 +31,7 @@ def main():
     upload_folder = 'images_for_instagram'
     os.makedirs(upload_folder, exist_ok=True)
     thumbnail_pic(upload_folder)
-    upload_instagram(upload_folder)
+    upload_instagram(upload_folder, INSTAGRAM_LOGIN, INSTAGRAM_PASSWORD)
 
 
 if __name__ == '__main__':
