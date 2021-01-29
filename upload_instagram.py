@@ -4,13 +4,13 @@ from PIL import Image
 import dotenv
 
 
-def thumbnail_pictures(end_folder):
+def thumbnail_pictures(end_folder, size):
     start_folder = 'images'
     images = os.listdir(start_folder)
     for image in images:
         start_file_path = os.path.join(os.getcwd(), start_folder)
         photo = Image.open(os.path.join(start_file_path, image))
-        photo.thumbnail((1080, 1080))
+        photo.thumbnail(size)
         rgb_photo = photo.convert('RGB')
         end_file_path = os.path.join(os.getcwd(), end_folder, image)
         rgb_photo.save(f'{end_file_path}', format='JPEG')
@@ -29,8 +29,9 @@ def main():
     INSTAGRAM_LOGIN = os.getenv('INSTAGRAM_LOGIN')
     INSTAGRAM_PASSWORD = os.getenv('INSTAGRAM_PASSWORD')
     upload_folder = 'images_for_instagram'
+    image_size = (1080, 1080)
     os.makedirs(upload_folder, exist_ok=True)
-    thumbnail_pictures(upload_folder)
+    thumbnail_pictures(upload_folder, image_size)
     upload_images_to_instagram(upload_folder, INSTAGRAM_LOGIN, INSTAGRAM_PASSWORD)
 
 
