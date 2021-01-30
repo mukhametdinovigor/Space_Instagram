@@ -22,7 +22,7 @@ def get_images_ids(collection_name):
 def fetch_hubble_images(image_url, collection_name, folder):
     for image_id in get_images_ids(collection_name):
         user_url = get_best_image_url(image_url, image_id)
-        filename = os.path.join(os.getcwd(), folder, f'{str(image_id)}{os.path.splitext(user_url)[-1]}')
+        filename = os.path.join(os.getcwd(), folder, f'{image_id}{os.path.splitext(user_url)[-1]}')
         download_image(user_url, filename)
         print(f'File {image_id} downloaded')
 
