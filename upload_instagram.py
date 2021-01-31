@@ -4,8 +4,7 @@ from PIL import Image
 import dotenv
 
 
-def thumbnail_pictures(end_folder, size):
-    start_folder = 'images'
+def thumbnail_pictures(end_folder, size, start_folder):
     images = os.listdir(start_folder)
     for image in images:
         start_file_path = os.path.join(os.getcwd(), start_folder)
@@ -26,13 +25,14 @@ def upload_images_to_instagram(end_folder, login, password):
 
 def main():
     dotenv.load_dotenv()
-    INSTAGRAM_LOGIN = os.getenv('INSTAGRAM_LOGIN')
-    INSTAGRAM_PASSWORD = os.getenv('INSTAGRAM_PASSWORD')
+    instagram_login = os.getenv('INSTAGRAM_LOGIN')
+    instagram_password = os.getenv('INSTAGRAM_PASSWORD')
+    download_folder = 'images'
     upload_folder = 'images_for_instagram'
     image_size = (1080, 1080)
     os.makedirs(upload_folder, exist_ok=True)
-    thumbnail_pictures(upload_folder, image_size)
-    upload_images_to_instagram(upload_folder, INSTAGRAM_LOGIN, INSTAGRAM_PASSWORD)
+    thumbnail_pictures(upload_folder, image_size, download_folder)
+    upload_images_to_instagram(upload_folder, instagram_login, instagram_password)
 
 
 if __name__ == '__main__':
